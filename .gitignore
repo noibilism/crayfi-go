@@ -1,0 +1,11 @@
+# Binaries
+*.exe
+*.test
+*.out
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
