@@ -7,9 +7,9 @@ type MoMoService struct {
 }
 
 func (s *MoMoService) Initiate(data interface{}) (interface{}, error) {
-	return s.client.post("/momo/api/v1/momo/initiate", data)
+	return s.client.post("/api/v2/momo/initiate", data)
 }
 
 func (s *MoMoService) Requery(customerReference string) (interface{}, error) {
-	return s.client.get(fmt.Sprintf("/momo/api/v1/momo/requery/%s", customerReference), nil)
+	return s.client.get(fmt.Sprintf("/api/v2/momo/requery/%s", customerReference), nil)
 }

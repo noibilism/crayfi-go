@@ -5,9 +5,9 @@ type WalletsService struct {
 }
 
 func (s *WalletsService) Balances() (interface{}, error) {
-	return s.client.get("/wallet/api/v1/wallet/balances", nil)
+	return s.client.get("/api/balance", nil)
 }
 
 func (s *WalletsService) Subaccounts() (interface{}, error) {
-	return s.client.get("/wallet/api/v1/wallet/sub-accounts", nil)
+	return s.client.get("/api/get-subaccount", nil)
 }
