@@ -142,6 +142,35 @@ resp, err := client.Refunds.Initiate(map[string]interface{}{
 })
 ```
 
+#### Virtual Accounts
+
+```go
+// Create / approve a virtual account
+resp, err := client.VirtualAccounts.Create(map[string]interface{}{
+    "provider":     "monnify",
+    "account_name": "John Doe",
+    "bvn":          "12345678901",
+})
+
+// Initiate a virtual account request (pre-create step)
+resp, err = client.VirtualAccounts.Initiate(map[string]interface{}{
+    "provider": "wema",
+    "bvn":      "12345678901",
+})
+
+// List all virtual accounts for the merchant
+resp, err = client.VirtualAccounts.List()
+
+// Get available virtual account providers
+resp, err = client.VirtualAccounts.Providers()
+
+// Submit OTP for Wema two-step flow
+resp, err = client.VirtualAccounts.SubmitOtp(map[string]interface{}{
+    "otp":        "123456",
+    "request_id": "req_abc123",
+})
+```
+
 ## Error Handling
 
 ```go
