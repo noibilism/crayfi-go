@@ -142,6 +142,43 @@ resp, err := client.Refunds.Initiate(map[string]interface{}{
 })
 ```
 
+#### Virtual Accounts
+
+```go
+// Create a virtual account
+resp, err := client.VirtualAccounts.Create(map[string]interface{}{
+    "bvn":                  "22192474887",
+    "type":                 "Corporate", // "Corporate" or "Individual"
+    "nin":                  "11111122221",
+    "virtual_account_type": "Permanent", // "Permanent" or "Onetime"
+    "account_name":         "BOlaOla",
+    "rc_number":            "99988828822", // Required for Corporate type
+    "currency":             "NGN",
+    "reference":            "cbf0d060-1544-4a53-a00b-7cb75a3eb59d",
+    "customer_email":       "hello@gmail.com",
+    "provider":             "monnify",
+})
+
+// Initiate a virtual account request (pre-create step)
+resp, err = client.VirtualAccounts.Initiate(map[string]interface{}{
+    "provider": "wema",
+    "bvn":      "22192474887",
+})
+
+// List all virtual accounts for the merchant
+resp, err = client.VirtualAccounts.List()
+
+// Get available virtual account providers
+resp, err = client.VirtualAccounts.Providers()
+
+// Submit OTP to complete the two-step Wema flow
+resp, err = client.VirtualAccounts.SubmitOtp(map[string]interface{}{
+    "merchant_id":    "123",
+    "otp":            "768238",
+    "customer_email": "hello@gmail.com",
+})
+```
+
 ## Error Handling
 
 ```go

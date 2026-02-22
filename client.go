@@ -32,7 +32,8 @@ type Client struct {
 	Wallets *WalletsService
 	FX      *FXService
 	Payouts *PayoutsService
-	Refunds *RefundsService
+	Refunds         *RefundsService
+	VirtualAccounts *VirtualAccountsService
 }
 
 // Option allows configuring the client
@@ -132,6 +133,7 @@ func New(apiKey string, opts ...Option) (*Client, error) {
 	c.FX = &FXService{client: c}
 	c.Payouts = &PayoutsService{client: c}
 	c.Refunds = &RefundsService{client: c}
+	c.VirtualAccounts = &VirtualAccountsService{client: c}
 
 	return c, nil
 }
